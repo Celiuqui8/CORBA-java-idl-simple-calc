@@ -8,5 +8,8 @@ module CalcApp
 		float div(in float a, in float b) raises (DivisionByZero);
 		float mul(in float a, in float b);
 		float sub(in float a, in float b);
+		float pow(in float base, in float exponent);
+        string solveQuadraticEquation(in double a, in double b, in double c);
+		
 	};
 };

@@ -34,6 +34,36 @@ class CalcImpl extends CalcPOA {
     public float sub(float a, float b) {
         return a - b;
     }
+    @Override
+    public float pow(float base, float exponent) {
+        return (float) Math.pow(base,exponent);
+    }
+    @Override
+    public String solveQuadraticEquation(double a, double b, double c) {
+        double discriminant = b * b - 4 * a * c;
+        String result = "";
+        if (discriminant > 0) {
+            double x1 = (-b + Math.sqrt(discriminant)) / (2 * a);
+            double x2 = (-b - Math.sqrt(discriminant)) / (2 * a);
+            result = "The roots are real and different.\n"
+                + "x1 = " + x1 + "\n"
+                + "x2 = " + x2 + "\n";
+        } else if (discriminant == 0) {
+            double x = -b / (2 * a);
+            result = "The roots are real and equal.\n"
+                + "x1 = x2 = " + x + "\n";
+        } else {
+            double realPart = -b / (2 * a);
+            double imaginaryPart = Math.sqrt(-discriminant) / (2 * a);
+            result = "The roots are complex and different.\n"
+                + "x1 = " + realPart + "+" + imaginaryPart + "i\n"
+                + "x2 = " + realPart + "-" + imaginaryPart + "i\n";
+        }
+        return result;
+    }
+
+
+
     private ORB orb;
 
     public void setORB(ORB orb_val) {

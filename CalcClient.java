@@ -19,7 +19,7 @@ public class CalcClient {
     public static void main(String args[]) {
 
         try {
-            // create and initialize the ORB
+            // Se crea y se inicializa el ORB
             ORB orb = ORB.init(args, null);
 
             // get the root naming context
@@ -40,13 +40,15 @@ public class CalcClient {
                 out.println("2. Sub");
                 out.println("3. Mul");
                 out.println("4. Div");
-                out.println("5. exit");
+                out.println("5. Pow");
+                out.println("6. Solve quadratic ecuations");
+                out.println("7. exit");
                 out.println("--");
                 out.println("choice: ");
 
                 try {
                     String opt = br.readLine();
-                    if (opt.equals("5")) {
+                    if (opt.equals("7")) {
                         break;
                     } else if (opt.equals("1")) {
                         out.println("a+b= " + calcImpl.sum(getFloat("a"), getFloat("b")));
@@ -59,6 +61,20 @@ public class CalcClient {
                             out.println("a/b= " + calcImpl.div(getFloat("a"), getFloat("b")));
                         } catch (DivisionByZero de) {
                             out.println("Division by zero!!!");
+                        }
+                    }
+                    else if(opt.equals("5")){
+                        out.println("a^b=" + calcImpl.pow(getFloat("a"),getFloat("b")));
+                    }
+                    else if(opt.equals("6")){
+                        double a = getFloat("a");
+                        double b = getFloat("b");
+                        double c = getFloat("c");
+                        try {
+                            String result = calcImpl.solveQuadraticEquation(a, b, c);
+                            out.println(result);
+                        } catch (Exception e) {
+                            out.println("Error solving quadratic equation: " + e.getMessage());
                         }
                     }
                 } catch (Exception e) {
